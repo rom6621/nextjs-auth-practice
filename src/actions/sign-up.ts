@@ -3,7 +3,7 @@
 import { SignUpType, signUpSchema } from "@/schemas";
 import { ActionsResult } from "@/types/ActionsResult";
 import { handleError } from "@/lib/utils";
-import { hash } from "bcrypt";
+import { hash } from "bcryptjs";
 import { db } from "@/lib/db";
 
 export const signUp = async (values: SignUpType): Promise<ActionsResult> => {

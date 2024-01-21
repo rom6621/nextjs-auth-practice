@@ -2,7 +2,7 @@ import Credentials from "next-auth/providers/credentials";
 import type { NextAuthConfig } from "next-auth";
 
 import { signInSchema } from "@/schemas";
-import { compare } from "bcrypt";
+import { compare } from "bcryptjs";
 import { db } from "@/lib/db";
 
 export default {
