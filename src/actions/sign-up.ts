@@ -1,7 +1,5 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
-
 import { SignUpType, signUpSchema } from "@/schemas";
 import { ActionsResult } from "@/types/ActionsResult";
 import { handleError } from "@/lib/utils";
