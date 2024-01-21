@@ -11,3 +11,5 @@ export const signUpSchema = z.object({
     message: "ニックネームは必須です。",
   }),
 });
+
+export type FormType = z.infer<typeof signUpSchema>;
