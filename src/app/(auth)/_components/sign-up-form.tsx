@@ -18,10 +18,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { FormError } from "@/components/form-error";
 import { Button } from "@/components/ui/button";
+import { useSearchParams } from "next/navigation";
 
 export const SignUpForm = () => {
   const [error, setError] = useState<string | undefined>("");
   const [isPending, startTransaction] = useTransition();
+
+  const searchParams = useSearchParams();
+  const urlError =
+    searchParams.get("error") === "OAuthAccountNotLinked"
+      ? "このメールアドレスは既に別のプロバイダーで使用されています。"
+      : "";
 
   const form = useForm<SignUpType>({
     resolver: zodResolver(signUpSchema),
@@ -88,7 +95,7 @@ export const SignUpForm = () => {
             </FormItem>
           )}
         />
-        <FormError message={error} />
+        <FormError message={error || urlError} />
         <Button type="submit" disabled={isPending}>
           アカウントを作成
         </Button>

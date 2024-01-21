@@ -1,4 +1,5 @@
 import Credentials from "next-auth/providers/credentials";
+import Google from "next-auth/providers/google";
 import type { NextAuthConfig } from "next-auth";
 
 import { signInSchema } from "@/schemas";
@@ -7,6 +8,10 @@ import { db } from "@/lib/db";
 
 export default {
   providers: [
+    Google({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
     Credentials({
       async authorize(credentials, request) {
         const validatedFields = signInSchema.safeParse(credentials);
