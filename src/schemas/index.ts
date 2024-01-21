@@ -21,3 +21,10 @@ export const signUpSchema = z.object({
 });
 
 export type SignUpType = z.infer<typeof signUpSchema>;
+
+export const signInSchema = signUpSchema.pick({
+  email: true,
+  password: true,
+});
+
+export type SignInType = z.infer<typeof signInSchema>;
