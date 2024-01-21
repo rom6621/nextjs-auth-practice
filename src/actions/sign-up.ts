@@ -2,12 +2,12 @@
 
 import { PrismaClient } from "@prisma/client";
 
-import { FormType, signUpSchema } from "@/schemas";
+import { SignUpType, signUpSchema } from "@/schemas";
 import { ActionsResult } from "@/types/ActionsResult";
 import { handleError } from "@/lib/utils";
 import { hash } from "bcrypt";
 
-export const signUp = async (values: FormType): Promise<ActionsResult> => {
+export const signUp = async (values: SignUpType): Promise<ActionsResult> => {
   const validatedFields = signUpSchema.safeParse(values);
 
   if (!validatedFields.success) {

@@ -20,4 +20,4 @@ export const signUpSchema = z.object({
   }),
 });
 
-export type FormType = z.infer<typeof signUpSchema>;
+export type SignUpType = z.infer<typeof signUpSchema>;

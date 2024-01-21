@@ -5,7 +5,7 @@ import { useState, useTransition } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-import { FormType, signUpSchema } from "@/schemas";
+import { SignUpType, signUpSchema } from "@/schemas";
 import { signUp } from "@/actions/sign-up";
 import {
   Form,
@@ -23,11 +23,11 @@ export const SignUpForm = () => {
   const [error, setError] = useState<string | undefined>("");
   const [isPending, startTransaction] = useTransition();
 
-  const form = useForm<FormType>({
+  const form = useForm<SignUpType>({
     resolver: zodResolver(signUpSchema),
   });
 
-  const onSubmit: SubmitHandler<FormType> = (values) => {
+  const onSubmit: SubmitHandler<SignUpType> = (values) => {
     setError("");
 
     startTransaction(async () => {
