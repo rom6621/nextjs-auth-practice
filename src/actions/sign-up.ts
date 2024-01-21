@@ -1,10 +1,11 @@
-"use client";
+"use server";
 
 import { PrismaClient } from "@prisma/client";
 
 import { FormType, signUpSchema } from "@/schemas";
 import { ActionsResult } from "@/types/ActionsResult";
 import { handleError } from "@/lib/utils";
+import { hash } from "bcrypt";
 
 export const signUp = async (values: FormType): Promise<ActionsResult> => {
   const validatedFields = signUpSchema.safeParse(values);
@@ -37,11 +38,13 @@ export const signUp = async (values: FormType): Promise<ActionsResult> => {
       };
     }
 
+    const hashedPassword = await hash(password, 10);
+
     await db.user.create({
       data: {
         name: nickname,
         email,
-        password,
+        password: hashedPassword,
       },
     });
 
