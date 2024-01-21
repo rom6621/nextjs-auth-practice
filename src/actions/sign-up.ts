@@ -6,6 +6,7 @@ import { SignUpType, signUpSchema } from "@/schemas";
 import { ActionsResult } from "@/types/ActionsResult";
 import { handleError } from "@/lib/utils";
 import { hash } from "bcrypt";
+import { db } from "@/lib/db";
 
 export const signUp = async (values: SignUpType): Promise<ActionsResult> => {
   const validatedFields = signUpSchema.safeParse(values);
@@ -22,7 +23,6 @@ export const signUp = async (values: SignUpType): Promise<ActionsResult> => {
   const { email, password, nickname } = validatedFields.data;
 
   try {
-    const db = new PrismaClient();
     const existingUser = await db.user.findUnique({
       where: {
         email,
