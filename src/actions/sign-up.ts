@@ -1,6 +1,5 @@
 "use client";
 
-import { hash } from "bcrypt";
 import { PrismaClient } from "@prisma/client";
 
 import { FormType, signUpSchema } from "@/schemas";
@@ -22,8 +21,6 @@ export const signUp = async (values: FormType): Promise<ActionsResult> => {
   const { email, password, nickname } = validatedFields.data;
 
   try {
-    const hashedPassword = await hash(password, 10);
-
     const db = new PrismaClient();
     const existingUser = await db.user.findUnique({
       where: {
@@ -44,7 +41,7 @@ export const signUp = async (values: FormType): Promise<ActionsResult> => {
       data: {
         name: nickname,
         email,
-        password: hashedPassword,
+        password,
       },
     });
 
