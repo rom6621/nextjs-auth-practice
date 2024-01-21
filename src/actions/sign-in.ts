@@ -4,8 +4,6 @@ import { SignInType, signInSchema } from "@/schemas";
 import { signIn as NextAuthSignIn } from "@/auth";
 import { ActionsResult } from "@/types/ActionsResult";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
-import { unknown } from "zod";
-import { error } from "console";
 import { AuthError } from "next-auth";
 
 export const signIn = async (values: SignInType): Promise<ActionsResult> => {
