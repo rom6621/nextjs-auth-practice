@@ -6,7 +6,7 @@ import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { FcGoogle } from "react-icons/fc";
 
 export const SocialButtons = () => {
-  const handleClick = (provider: "google") => {
+  const handleClick = (provider: "google" | "cognito") => {
     signIn(provider, {
       callbackUrl: DEFAULT_LOGIN_REDIRECT,
     });
@@ -22,6 +22,15 @@ export const SocialButtons = () => {
       >
         <FcGoogle className="w-5 h-5" />
         <span className="ml-2">Google</span>
+      </Button>
+      <Button
+        size="lg"
+        className="w-full"
+        variant="outline"
+        onClick={() => handleClick("cognito")}
+      >
+        <FcGoogle className="w-5 h-5" />
+        <span className="ml-2">Cognito</span>
       </Button>
     </div>
   );
