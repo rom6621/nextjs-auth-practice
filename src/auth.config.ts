@@ -1,6 +1,6 @@
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
-import Cognito from "@auth/core/providers/cognito";
+import Cognito from "next-auth/providers/cognito";
 import type { NextAuthConfig } from "next-auth";
 
 import { signInSchema } from "@/schemas";
@@ -18,6 +18,7 @@ export default {
       issuer: process.env.COGNITO_ISSUER,
       clientId: process.env.COGNITO_CLIENT_ID,
       clientSecret: process.env.COGNITO_CLIENT_SECRET,
+      checks: ["nonce", "pkce", "state"],
     }),
     Credentials({
       async authorize(credentials, request) {
